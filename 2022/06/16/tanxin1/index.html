@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="《算法竞赛进阶指南》 Running Median, Hexo">
-    <meta name="description" content="原题链接:动态中位数
-题目描述依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。
-题目分析　　为了动态维护中位数，我们可以建立两个二叉堆：一个小根堆，一个大根堆。再依次读入这个整数序列的过程中，设当前">
+    <meta name="keywords" content="《算法竞赛进阶指南》雷达设备, Hexo">
+    <meta name="description" content="原题链接:雷达设备
+解题思路:贪心$O(nlogn)$如下图所示，对于任意一个小岛$(x,y)$,我们都可以再海岸线上求出能覆盖该笑道的建造雷达的区间$[a,b]$。由勾股定理可知:
+
+$a &amp;#x3D; x -\sqrt{d^2-y^2}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +22,7 @@
 
     
 
-    <title>《算法竞赛进阶指南》 Running Median | Hexo</title>
+    <title>《算法竞赛进阶指南》雷达设备 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -248,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">《算法竞赛进阶指南》 Running Median</h1>
+                    <h1 class="description center-align post-title">《算法竞赛进阶指南》雷达设备</h1>
                 </div>
             </div>
         </div>
@@ -369,27 +370,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-                                <span class="chip bg-color">中位数</span>
-                            </a>
-                        
-                            <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-                                <span class="chip bg-color">优先队列</span>
+                            <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                <span class="chip bg-color">贪心</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                基础算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -398,21 +386,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-12
+                    2022-06-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-12
+                    2022-06-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    449
+                    520
                 </div>
                 
 
@@ -442,66 +430,69 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/108/">动态中位数</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。</p>
-<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>　　为了动态维护中位数，我们可以建立两个二叉堆：一个小根堆，一个大根堆。再依次读入这个整数序列的过程中，设当前长度为<strong>M</strong>，我们保持:</p>
+                <p>原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/114/">雷达设备</a></p>
+<p>解题思路:<br>贪心$O(nlogn)$<br>如下图所示，对于任意一个小岛$(x,y)$,我们都可以再海岸线上求出能覆盖该笑道的建造雷达的区间$[a,b]$。<br><img src="https://s3.bmp.ovh/imgs/2022/06/16/38224abb7394d600.png"><br>由勾股定理可知:</p>
+<ul>
+<li>$a &#x3D; x -\sqrt{d^2-y^2}$;  </li>
+<li>$b&#x3D;x+\sqrt{d^2+y^2}$;<br>将所有小岛转化成区间后，问题转化为：给定$n$个区间，在$x$轴上选择尽量少的点，使得所有区间至少包含一个点。<br>我们先给出做法，再证明其正确性。<br>算法步骤：<br>1.将所有区间按右端点从小到大排序;<br>2.依次考虑每个区间:</li>
+<li>如果当前区间包含最后一个选择的点，则直接跳过；  </li>
+<li>如果当前区间不包含最后一个选择的点，则再当前区间的右端点的位置选一个新的点；<br>证明:<br>首先上述做法一定可以保证所有区间都至少包含一个点。然后我们再证明这样选出的点的数量是最少的，不妨设选出的点是$m$:</li>
+<li>按照上述做法，我们选择的点都是某个区间的右端点排好序，我们可以只选$m$个点。因此最优解就是$m$.</li>
+</ul>
+<p><strong>时间复杂度</strong>  </p>
 <ol>
-<li>序列中从小到大排名为<strong>1~M&#x2F;2</strong>的整数存储在大根堆中;</li>
-<li>序列中从小到大排名为<strong>M&#x2F;2+1~M</strong>的整数存储在小根堆中;</li>
-</ol>
-<p>　　任何时候,如果某一个堆中元素个数过多，打破了这个性质，就取出该堆的堆顶插入另一个堆。这样一来，序列的中位数就是小根堆的堆顶。<br>　　每次新读入一个数值<strong>X</strong>后，若<strong>X</strong>比中位数小，则插入大根堆，否则插入小根堆，在插入之后检查并维护上述性质即可。这就是<strong>对顶堆算法</strong>。</p>
-<p>代码实现:</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<li>计算每个坐标所对应的区间，需要$O(n)$的计算量;</li>
+<li>将所有区间排序需要$O(nlogn)$的计算量;</li>
+<li>扫描所有区间需要$O(nlogn)$<br><strong>C++代码</strong><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>   
-    <span class="token keyword">int</span> t<span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>t<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">1005</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">node</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">double</span> l<span class="token punctuation">,</span>r<span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword">const</span> node <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token keyword">const</span>
     <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> i<span class="token punctuation">,</span>n<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>i<span class="token operator">>></span>n<span class="token punctuation">;</span>
-        cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span>n<span class="token operator">/</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span>greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> q1<span class="token punctuation">;</span><span class="token comment">//小根堆</span>
-        priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q2<span class="token punctuation">;</span><span class="token comment">//大根堆 </span>
-        <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#123;</span>
-            <span class="token keyword">int</span> x<span class="token punctuation">;</span>
-            cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">>=</span>q1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> q2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>q2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token punctuation">&#123;</span>
-                <span class="token keyword">while</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>q2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">&#123;</span>
-                    q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>q2<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    q2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>q2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">>=</span><span class="token number">2</span><span class="token punctuation">)</span>
-            <span class="token punctuation">&#123;</span>
-                <span class="token keyword">while</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>q2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">>=</span><span class="token number">2</span><span class="token punctuation">)</span>
-                <span class="token punctuation">&#123;</span>
-                    q2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    q1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">2</span><span class="token punctuation">)</span>
-            <span class="token punctuation">&#123;</span>
-                k<span class="token operator">++</span><span class="token punctuation">;</span>
-                cout<span class="token operator">&lt;&lt;</span>q1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>k<span class="token operator">%</span><span class="token number">10</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>k<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span>cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> r<span class="token operator">&lt;</span>a<span class="token punctuation">.</span>r<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>seg<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span>d<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>d<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token punctuation">;</span>
+        y<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">></span>d<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            cout<span class="token operator">&lt;&lt;</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">double</span> len<span class="token operator">=</span><span class="token function">sqrt</span><span class="token punctuation">(</span>d<span class="token operator">*</span>d<span class="token operator">-</span>y<span class="token operator">*</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span>x<span class="token operator">-</span>len<span class="token punctuation">,</span>x<span class="token operator">+</span>len<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>seg<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>seg<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> last<span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1e20</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>last<span class="token operator">&lt;</span>seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>l<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+            last<span class="token operator">=</span>seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>r<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    cout<span class="token operator">&lt;&lt;</span>cnt<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -527,7 +518,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/12/algorithm1/">http://example.com/2022/06/12/algorithm1/</a>
+                    <a href="http://example.com/2022/06/16/tanxin1/">http://example.com/2022/06/16/tanxin1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,12 +556,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-                                    <span class="chip bg-color">中位数</span>
-                                </a>
-                            
-                                <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-                                    <span class="chip bg-color">优先队列</span>
+                                <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                    <span class="chip bg-color">贪心</span>
                                 </a>
                             
                         </div>
@@ -744,17 +731,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/13/algorithm2/">
+                <a href="/2022/06/16/tanxin1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="逆序对">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="《算法竞赛进阶指南》雷达设备">
                         
-                        <span class="card-title">逆序对</span>
+                        <span class="card-title">《算法竞赛进阶指南》雷达设备</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,9 +752,55 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-13
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            caoxin
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                        <span class="chip bg-color">贪心</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/15/rmq/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="ST算法">
+                        
+                        <span class="card-title">ST算法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -782,51 +816,18 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/">
-                        <span class="chip bg-color">逆序对</span>
+                    <a href="/tags/RMQ%E9%97%AE%E9%A2%98/">
+                        <span class="chip bg-color">RMQ问题</span>
                     </a>
                     
-                    <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">归并排序</span>
+                    <a href="/tags/ST%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">ST算法</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/06/12/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-12
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            caoxin
-                            
-                        </span>
-                    </div>
+                    <a href="/tags/%E5%80%8D%E5%A2%9E/">
+                        <span class="chip bg-color">倍增</span>
+                    </a>
+                    
                 </div>
                 
             </div>
