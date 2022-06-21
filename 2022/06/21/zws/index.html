@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ST算法, Hexo">
-    <meta name="description" content="ST算法　　在RMQ问题（区间最值问题）中，著名的ST算法就是倍增的产物。给定一个长度为$N$的数列A，ST算法能在$O(NlogN)$时间的预处理后，以$O(1)$的时间复杂度在线回答“数列A下标在l到r之间的数的最大值是多少”这样的区间">
+    <meta name="keywords" content="《算法竞赛进阶指南》中位数与环形均分纸牌, Hexo">
+    <meta name="description" content="中位数【例题】货仓选址 原题链接:货仓选址　　把$A[1]\sim A[N]$排序，设货仓建在$X$坐标处，$X$左侧的商店有$P$家,右侧的商店有$Q$家。若$P\lt Q$，则每把货仓的选址向右移动1单位的距离，距离之和就会减小$Q-P">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>ST算法 | Hexo</title>
+    <title>《算法竞赛进阶指南》中位数与环形均分纸牌 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -246,12 +246,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ST算法</h1>
+                    <h1 class="description center-align post-title">《算法竞赛进阶指南》中位数与环形均分纸牌</h1>
                 </div>
             </div>
         </div>
@@ -367,16 +367,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/RMQ%E9%97%AE%E9%A2%98/">
-                                <span class="chip bg-color">RMQ问题</span>
+                            <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+                                <span class="chip bg-color">中位数</span>
                             </a>
                         
-                            <a href="/tags/ST%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">ST算法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%80%8D%E5%A2%9E/">
-                                <span class="chip bg-color">倍增</span>
+                            <a href="/tags/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">
+                                <span class="chip bg-color">环形均分纸牌</span>
                             </a>
                         
                     </div>
@@ -400,28 +396,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-15
+                    2022-06-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-15
+                    2022-06-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    718
+                    592
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -444,65 +440,37 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="ST算法"><a href="#ST算法" class="headerlink" title="ST算法"></a>ST算法</h2><p>　　在RMQ问题（区间最值问题）中，著名的ST算法就是倍增的产物。给定一个长度为$N$的数列A，ST算法能在$O(NlogN)$时间的预处理后，以$O(1)$的时间复杂度在线回答“数列A下标在l到r之间的数的最大值是多少”这样的区间最值问题。<br>　　一个序列的子区间显然有$O(N^2)$个，根据倍增思想，我们首先在这个规模为$O(N^2)$的状态空间里选择一些2的整数次幂的位置作为代表值。<br>　　设$F[i,j]$表示数列$A$中下标在子区间$[i,i+2^j-1]$里数的最大值，也就是从$i$开始的$2^j$个数的最大值。递推边界显然是$F[i,0]&#x3D;A[i]$，即数列$A$在子区间$[i,i]$里的最大值。<br>　　在递推时，我们把子区间的长度成倍增长，有公式$F[i,j]&#x3D;max(F[i,j-1],F[i+2^{j-1},j-1])$即长度为$2^j$的子区间的最大值是左右两半长度为$2^{j-1}$的子区间的最大值中较大的一个。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">ST_prework</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> t <span class="token operator">=</span> <span class="token function">log</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> t<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>　　当询问任意区间$[l,r]$的最值时，我们先计算出一个$k$，满足$2^k \leq r-l+1 \lt 2^{k+1}$,也就是2的$k$次幂小于区间长度的前提下最大的$k$。那么“从$l$开始的$2^k$个数”和“以$r$结尾的$2^k$个数”这两段一定覆盖了整个区间$[l,r]$,这两段的最大值分别是$F[l,k]$和$F[r-2^k+1,k]$,二者中较大的那个就是整个区间的$[l,r]$的最值。因为求的是最大值，所以这两段只要覆盖区间$[l,r]$即可，即使有重叠也没关系。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">ST_query</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token function">log</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>r <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>k<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>原题链接：<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1275/">天才的记忆</a><br>代码:</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span>
-
+                <h2 id="中位数"><a href="#中位数" class="headerlink" title="中位数"></a>中位数</h2><p>【例题】货仓选址 原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/106/">货仓选址</a><br>　　把$A[1]\sim A[N]$排序，设货仓建在$X$坐标处，$X$左侧的商店有$P$家,右侧的商店有$Q$家。若$P\lt Q$，则每把货仓的选址向右移动1单位的距离，距离之和就会减小$Q-P$，同理，若$P\gt Q$,则货仓的选址向左移动会使距离之和变小。当$P&#x3D;Q$时为最优解。<br>　　因此货仓应该建在中位数处，即把$A$排序后，当$N$为奇数时，货仓建在$A[(N+1)&#x2F;2]$处最优；当$N$为偶数时，货仓建在$A[N&#x2F;2]~A[N&#x2F;2+1]$之间的任何位置都是最优解。<br>代码:</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">2e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> f<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N  <span class="token operator">=</span> <span class="token number">1e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> a<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
 
-<span class="token keyword">void</span> <span class="token function">st_prework</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> t<span class="token operator">=</span> <span class="token function">log</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>t<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">st_query</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token function">log</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>r<span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>k<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
     cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    
-    <span class="token function">st_prework</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>m<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>m<span class="token operator">--</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> l<span class="token punctuation">,</span>r<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>l<span class="token operator">>></span>r<span class="token punctuation">;</span>
-        cout<span class="token operator">&lt;&lt;</span><span class="token function">st_query</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span>r<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-    
+    ll ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>a<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        ans<span class="token operator">+=</span>a<span class="token punctuation">[</span>n<span class="token operator">-</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="均分纸牌问题"><a href="#均分纸牌问题" class="headerlink" title="均分纸牌问题"></a>均分纸牌问题</h2><p>　　$M$个人排成一行，他们手中分别由$C[1]\sim C[M]$张纸牌，在每一步操作中，可以让某个人把自己手中的一张纸牌交给他旁边的一个人，求至少需要多少步操作才能让每个人手中持有的纸牌数相等。<br>　　显然，当所有人手中持有的纸牌总数$T$能被$M$整除时，“均分纸牌”问题有解，在有解时，我们可以先考虑第一个人。<br>　　1.　若$C[1]\gt T&#x2F;M$,则第一个人需要给第二个人$C[1]-T&#x2F;M$张纸牌，即把$C[2]$加上$C[1]-T&#x2F;M$.<br>　　2.　若$C[1]\lt T&#x2F;M$,则第一个人需要从第二个人手中拿$T&#x2F;M-C[1]$张纸牌，即把$C[2]$减去$T&#x2F;M-C[1]$.<br>　　按照同样的方法，依次考虑第$2\sim M$个人。即使在某个时刻有某个$C[i]$被减为负数也没有关系，因为接下来$C[i]$就会从$C[i+1]$处拿牌,在实际中可以认为$C[i]$从$C[i+1]$处拿牌发生在$C[i-1]$从$C[i]$处拿牌之前。按照这种方法，经过计算，达到目标所需要的最少步数其实就是：<br>$$\sum_{i&#x3D;1}^M$$</p>
 
                 
             </div>
@@ -529,7 +497,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/15/rmq/">http://example.com/2022/06/15/rmq/</a>
+                    <a href="http://example.com/2022/06/21/zws/">http://example.com/2022/06/21/zws/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,16 +535,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/RMQ%E9%97%AE%E9%A2%98/">
-                                    <span class="chip bg-color">RMQ问题</span>
+                                <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+                                    <span class="chip bg-color">中位数</span>
                                 </a>
                             
-                                <a href="/tags/ST%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">ST算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%80%8D%E5%A2%9E/">
-                                    <span class="chip bg-color">倍增</span>
+                                <a href="/tags/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">
+                                    <span class="chip bg-color">环形均分纸牌</span>
                                 </a>
                             
                         </div>
@@ -750,17 +714,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/16/tanxin1/">
+                <a href="/2022/06/21/zws/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="《算法竞赛进阶指南》雷达设备">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="《算法竞赛进阶指南》中位数与环形均分纸牌">
                         
-                        <span class="card-title">《算法竞赛进阶指南》雷达设备</span>
+                        <span class="card-title">《算法竞赛进阶指南》中位数与环形均分纸牌</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -770,22 +735,31 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            caoxin
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
+                                    基础算法
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
+                    <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+                        <span class="chip bg-color">中位数</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">
+                        <span class="chip bg-color">环形均分纸牌</span>
                     </a>
                     
                 </div>
@@ -799,13 +773,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/13/algorithm2/">
+                <a href="/2022/06/21/binary-search1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="逆序对">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="《算法竞赛进阶指南》 赶牛入圈">
                         
-                        <span class="card-title">逆序对</span>
+                        <span class="card-title">《算法竞赛进阶指南》 赶牛入圈</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,7 +790,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
                             </span>
                         <span class="publish-author">
                             
@@ -833,12 +807,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/">
-                        <span class="chip bg-color">逆序对</span>
+                    <a href="/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/">
+                        <span class="chip bg-color">二分答案</span>
                     </a>
                     
-                    <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">归并排序</span>
+                    <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="chip bg-color">离散化</span>
                     </a>
                     
                 </div>
