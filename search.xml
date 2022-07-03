@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>章节传送门</title>
+      <link href="/2022/07/03/chuansongmeng/"/>
+      <url>/2022/07/03/chuansongmeng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="《算法竞赛进阶指南》刷题计划"><a href="#《算法竞赛进阶指南》刷题计划" class="headerlink" title="《算法竞赛进阶指南》刷题计划"></a>《算法竞赛进阶指南》刷题计划</h2><hr><h3 id="0x00基础算法"><a href="#0x00基础算法" class="headerlink" title="0x00基础算法"></a>0x00基础算法</h3><h4 id="0x01位运算"><a href="#0x01位运算" class="headerlink" title="0x01位运算"></a>0x01位运算</h4><h4 id="0x02递推与递归"><a href="#0x02递推与递归" class="headerlink" title="0x02递推与递归"></a>0x02递推与递归</h4><h4 id="0x03前缀和与差分"><a href="#0x03前缀和与差分" class="headerlink" title="0x03前缀和与差分"></a>0x03前缀和与差分</h4><h4 id="0x04二分"><a href="#0x04二分" class="headerlink" title="0x04二分"></a>0x04二分</h4><p><a href="https://caoxin9927.github.io/2022/06/21/binary-search1/">赶牛入圈</a></p><h4 id="0x05排序"><a href="#0x05排序" class="headerlink" title="0x05排序"></a>0x05排序</h4><p><a href="https://caoxin9927.github.io/2022/06/21/zws/">中位数与环形均分纸牌问题</a><br><a href="https://caoxin9927.github.io/2022/06/13/algorithm2/">逆序对</a><br><a href="https://caoxin9927.github.io/2022/06/12/algorithm1/">动态中位数</a></p><h4 id="0x06倍增"><a href="#0x06倍增" class="headerlink" title="0x06倍增"></a>0x06倍增</h4><p><a href="https://caoxin9927.github.io/2022/06/16/tanxin1/">ST算法</a></p><h4 id="0x07贪心"><a href="#0x07贪心" class="headerlink" title="0x07贪心"></a>0x07贪心</h4><p><a href="https://caoxin9927.github.io/2022/06/19/greedy1/">树上染色</a><br><a href="https://caoxin9927.github.io/2022/06/16/tanxin1/">雷达设备</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《算法竞赛进阶指南》双端队列</title>
+      <link href="/2022/07/03/queue2/"/>
+      <url>/2022/07/03/queue2/</url>
+      
+        <content type="html"><![CDATA[<p>原题链接:<a href="https://www.acwing.com/problem/content/136/">双端队列</a><br><strong>又是一道折磨题，蓝书真有你的</strong><br>　　这个问题很难直接求解，因为在不知道后面会有哪些数的情况下，我们做出局部决策很可能直接造成某个数$P$和$Q$之间的数，不管放到哪里都会导致无解（无法把队列连成一个有序序列）。这种情况启发我们，<strong>必须考虑按照数值的大小顺序而不是读入的顺序进行计算</strong>。<br>　　因为Sherry最后会把队列连成一个非降序列，所以我们不妨反过来思考，先把$N$个数$A[1\sim N]$从小到大排序，然后分成尽量少的极端，让每一段对应原问题中一个合法的双端队列。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 队列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《算法竞赛进阶指南》 表达式计算4</title>
       <link href="/2022/07/03/stack1/"/>
       <url>/2022/07/03/stack1/</url>

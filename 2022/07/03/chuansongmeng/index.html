@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="逆序对, codenovice">
-    <meta name="description" content="逆序对　　对于一个序列$a$,若$i\lt j$且$a[i]\gt a[j]$,则称$a[i]$与$a[j]$构成逆序对。　　使用归并排序可以在$O(nlogn)$的时间里求出一个长度为$n$的序列中逆序对的个数。归并排序每次把序列二分，递">
+    <meta name="keywords" content="章节传送门, codenovice">
+    <meta name="description" content="各种文章的汇总">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>逆序对 | codenovice</title>
+    <title>章节传送门 | codenovice</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -246,12 +246,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">逆序对</h1>
+                    <h1 class="description center-align post-title">章节传送门</h1>
                 </div>
             </div>
         </div>
@@ -367,27 +367,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/">
-                                <span class="chip bg-color">逆序对</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">归并排序</span>
+                            <a href="/tags/%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">总结</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                基础算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -396,28 +383,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-13
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-15
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    737
+                    76
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -440,76 +427,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="逆序对"><a href="#逆序对" class="headerlink" title="逆序对"></a>逆序对</h2><p>　　对于一个序列$a$,若$i\lt j$且$a[i]\gt a[j]$,则称$a[i]$与$a[j]$构成逆序对。<br>　　使用归并排序可以在$O(nlogn)$的时间里求出一个长度为$n$的序列中逆序对的个数。归并排序每次把序列二分，递归对左右两半格子内部的逆序对数作为子问题计算。因此，我们只需要再合并时考虑“左边一半里一个较大的数”与“右边一半里一个较小的数“构成逆序对的情形，求出这种情形的个数。<br>　　合并两个有序序列a[l到m]与a[mid+1到r]可以采用两个指针$i$与$j$分别对二者进行扫描的方式，不断比较两个指针所指向的数值$a[i]$和$a[j]$的大小，将小的那个加入导排序的结果数组中.<strong>若小的那个是$a[j]$，则$a[i到mid]$都比$a[j]$要大，它们都会与$a[j]$构成逆序对，可以顺便统计到答案中。</strong></p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> mid<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">//合并a[l~mid]与a[mid+1~r]</span>
-    <span class="token comment">//a是待排序数组，b是临时数组，cnt是逆序对个数</span>
-    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>j <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>k <span class="token operator">&lt;=</span> r <span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>j <span class="token operator">></span> r <span class="token operator">||</span> i <span class="token operator">&lt;=</span> mid <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>b<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">else</span> b<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cnt <span class="token operator">+=</span> mid<span class="token operator">-</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> l<span class="token punctuation">;</span> k <span class="token operator">&lt;=</span> r<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> b<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/109/">超快速排序</a><br>题目描述:给定一个长度为n($n\leq5*10^5$)的序列$a$,如果只允许进行比较和交换相邻两个数的操作，求至少需要多少次交换才能把$a$从小到大排序。<br>　　只通过比较和交换响铃两个数值的排序方法，实际上就是冒泡排序。在排序过程中每找到一对大小颠倒的相邻数之，把它们交换，就会使整个序列的逆序对个数减少。最终拍好序后逆序对个数显然为0，所以对$a$进行冒泡排序需要的最少交换次数就是序列$a$中逆序对的个数。我们直接使用归并排序求出$a$的逆序对的个数。<br>代码:</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">int</span> <span class="token expression"><span class="token keyword">long</span> <span class="token keyword">long</span></span></span>
-
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">5e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> q<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">;</span>
-<span class="token keyword">int</span> tmp<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> cnt<span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> q<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">>=</span>r<span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token keyword">int</span> mid<span class="token operator">=</span>l<span class="token operator">+</span>r<span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span>l<span class="token punctuation">,</span>j<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token function">merge_sort</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span>l<span class="token punctuation">,</span>mid<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">merge_sort</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>l<span class="token punctuation">;</span>k<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>j<span class="token operator">></span>r <span class="token operator">||</span> i<span class="token operator">&lt;=</span>mid <span class="token operator">&amp;&amp;</span> q<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;=</span>q<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            tmp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">=</span>q<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">&#123;</span>
-            cnt<span class="token operator">+=</span>mid<span class="token operator">-</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-            tmp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">=</span>q<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>l<span class="token punctuation">;</span>k<span class="token operator">&lt;=</span>r<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span>
-        q<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">=</span>tmp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token comment">//cout&lt;&lt;11&lt;&lt;endl;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">signed</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-        cin<span class="token operator">>></span>q<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">merge_sort</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//for(int i=0;i&lt;n;i++)</span>
-        cout<span class="token operator">&lt;&lt;</span>cnt<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-
-       
-    
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+                <h2 id="《算法竞赛进阶指南》刷题计划"><a href="#《算法竞赛进阶指南》刷题计划" class="headerlink" title="《算法竞赛进阶指南》刷题计划"></a>《算法竞赛进阶指南》刷题计划</h2><hr>
+<h3 id="0x00基础算法"><a href="#0x00基础算法" class="headerlink" title="0x00基础算法"></a>0x00基础算法</h3><h4 id="0x01位运算"><a href="#0x01位运算" class="headerlink" title="0x01位运算"></a>0x01位运算</h4><h4 id="0x02递推与递归"><a href="#0x02递推与递归" class="headerlink" title="0x02递推与递归"></a>0x02递推与递归</h4><h4 id="0x03前缀和与差分"><a href="#0x03前缀和与差分" class="headerlink" title="0x03前缀和与差分"></a>0x03前缀和与差分</h4><h4 id="0x04二分"><a href="#0x04二分" class="headerlink" title="0x04二分"></a>0x04二分</h4><p><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/21/binary-search1/">赶牛入圈</a></p>
+<h4 id="0x05排序"><a href="#0x05排序" class="headerlink" title="0x05排序"></a>0x05排序</h4><p><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/21/zws/">中位数与环形均分纸牌问题</a><br><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/13/algorithm2/">逆序对</a><br><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/12/algorithm1/">动态中位数</a></p>
+<h4 id="0x06倍增"><a href="#0x06倍增" class="headerlink" title="0x06倍增"></a>0x06倍增</h4><p><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/16/tanxin1/">ST算法</a></p>
+<h4 id="0x07贪心"><a href="#0x07贪心" class="headerlink" title="0x07贪心"></a>0x07贪心</h4><p><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/19/greedy1/">树上染色</a><br><a target="_blank" rel="noopener" href="https://caoxin9927.github.io/2022/06/16/tanxin1/">雷达设备</a></p>
 
                 
             </div>
@@ -536,7 +458,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/13/algorithm2/">http://example.com/2022/06/13/algorithm2/</a>
+                    <a href="http://example.com/2022/07/03/chuansongmeng/">http://example.com/2022/07/03/chuansongmeng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -574,12 +496,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/">
-                                    <span class="chip bg-color">逆序对</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">归并排序</span>
+                                <a href="/tags/%E6%80%BB%E7%BB%93/">
+                                    <span class="chip bg-color">总结</span>
                                 </a>
                             
                         </div>
@@ -753,54 +671,44 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/15/rmq/">
+                <a href="/2022/07/03/chuansongmeng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="ST算法">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="章节传送门">
                         
-                        <span class="card-title">ST算法</span>
+                        <span class="card-title">章节传送门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            各种文章的汇总
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CaoXin
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RMQ%E9%97%AE%E9%A2%98/">
-                        <span class="chip bg-color">RMQ问题</span>
-                    </a>
-                    
-                    <a href="/tags/ST%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">ST算法</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%80%8D%E5%A2%9E/">
-                        <span class="chip bg-color">倍增</span>
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
                     </a>
                     
                 </div>
@@ -814,13 +722,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/12/algorithm1/">
+                <a href="/2022/07/03/queue2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="《算法竞赛进阶指南》 Running Median">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="《算法竞赛进阶指南》双端队列">
                         
-                        <span class="card-title">《算法竞赛进阶指南》 Running Median</span>
+                        <span class="card-title">《算法竞赛进阶指南》双端队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -831,14 +739,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    基础数据结构
                                 </a>
                             
                             
@@ -848,12 +756,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-                        <span class="chip bg-color">中位数</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-                        <span class="chip bg-color">优先队列</span>
+                    <a href="/tags/%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">队列</span>
                     </a>
                     
                 </div>
@@ -1014,13 +918,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
