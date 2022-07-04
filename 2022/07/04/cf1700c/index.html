@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="《算法竞赛进阶指南》雷达设备, codenovice">
-    <meta name="description" content="原题链接:雷达设备
-解题思路:贪心$O(nlogn)$如下图所示，对于任意一个小岛$(x,y)$,我们都可以再海岸线上求出能覆盖该笑道的建造雷达的区间$[a,b]$。由勾股定理可知:
-
-$a &amp;#x3D; x -\sqrt{d^2-y^2}">
+    <meta name="keywords" content="Codeforces Round 802 (Div. 2)C题解, codenovice">
+    <meta name="description" content="原题链接:C. Helping the Nature先做一段翻译:小雷恩住在森林里。他最近注意到，在他喜欢的路径附近一些树都枯萎了，而其他树木水分过多，所以他决定学习如何控制土壤中水分的平衡来拯救树木。有$n$棵树长在路径的旁边，当前每棵树">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
 
     
 
-    <title>《算法竞赛进阶指南》雷达设备 | codenovice</title>
+    <title>Codeforces Round 802 (Div. 2)C题解 | codenovice</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -249,12 +246,12 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">《算法竞赛进阶指南》雷达设备</h1>
+                    <h1 class="description center-align post-title">Codeforces Round 802 (Div. 2)C题解</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +367,16 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                                <span class="chip bg-color">贪心</span>
+                            <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                <span class="chip bg-color">思维</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%B7%AE%E5%88%86/">
+                                <span class="chip bg-color">差分</span>
+                            </a>
+                        
+                            <a href="/tags/codeforces/">
+                                <span class="chip bg-color">codeforces</span>
                             </a>
                         
                     </div>
@@ -395,21 +400,21 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-16
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-03
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    520
+                    583
                 </div>
                 
 
@@ -439,69 +444,54 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/114/">雷达设备</a></p>
-<p>解题思路:<br>贪心$O(nlogn)$<br>如下图所示，对于任意一个小岛$(x,y)$,我们都可以再海岸线上求出能覆盖该笑道的建造雷达的区间$[a,b]$。<br><img src="https://s3.bmp.ovh/imgs/2022/06/16/38224abb7394d600.png"><br>由勾股定理可知:</p>
+                <p>原题链接:<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1700/problem/C">C. Helping the Nature</a><br><img src="https://s3.bmp.ovh/imgs/2022/07/04/12f2f703fd685d4a.jpg"><br>先做一段翻译:<br>小雷恩住在森林里。他最近注意到，在他喜欢的路径附近一些树都枯萎了，而其他树木水分过多，所以他决定学习如何控制土壤中水分的平衡来拯救树木。<br>有$n$棵树长在路径的旁边，当前每棵树的水分等级表示为数组$a_1,a_2,…,a_n$。雷恩学会了三种能力，可以帮助他浇灌土壤。  </p>
 <ul>
-<li>$a &#x3D; x -\sqrt{d^2-y^2}$;  </li>
-<li>$b&#x3D;x+\sqrt{d^2+y^2}$;<br>将所有小岛转化成区间后，问题转化为：给定$n$个区间，在$x$轴上选择尽量少的点，使得所有区间至少包含一个点。<br>我们先给出做法，再证明其正确性。<br>算法步骤：<br>1.将所有区间按右端点从小到大排序;<br>2.依次考虑每个区间:</li>
-<li>如果当前区间包含最后一个选择的点，则直接跳过；  </li>
-<li>如果当前区间不包含最后一个选择的点，则再当前区间的右端点的位置选一个新的点；<br>证明:<br>首先上述做法一定可以保证所有区间都至少包含一个点。然后我们再证明这样选出的点的数量是最少的，不妨设选出的点是$m$:</li>
-<li>按照上述做法，我们选择的点都是某个区间的右端点排好序，我们可以只选$m$个点。因此最优解就是$m$.</li>
+<li>选择一个位置$i$然后让第$1,2,…,i$棵树的水分等级都减1.。 </li>
+<li>选择一个位置$i$然后让第$i,i+1,…,n$课树的水分等级减1。</li>
+<li>使所有树的水分等级都加上1。</li>
 </ul>
-<p><strong>时间复杂度</strong>  </p>
-<ol>
-<li>计算每个坐标所对应的区间，需要$O(n)$的计算量;</li>
-<li>将所有区间排序需要$O(nlogn)$的计算量;</li>
-<li>扫描所有区间需要$O(nlogn)$<br><strong>C++代码</strong><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<p>雷恩想知道他需要执行的最小行动数，以使每棵的水分都等于0。</p>
+<h2 id="新单词"><a href="#新单词" class="headerlink" title="新单词"></a>新单词</h2><p>1.withering adj.使干枯的；使畏缩的；极有毁灭性的；极有讽刺性的 n.枯萎，凋谢 使凋谢；干枯；减弱；摧毁（wither 的现在分词） CET6<br>2.over hydrated 水分过多的<br>3.moisture n.潮气，水分 CET4</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于这种总体+&#x2F;-的操作，第一时间考虑差分数组，然后三种操作可以转化为:  </p>
+<ul>
+<li>$d_1\longleftarrow d_1+1　,　d_{i+1}\longleftarrow d_{i+1}+1;$</li>
+<li>$d_i\longleftarrow d_i-1;$</li>
+<li>$d_1\longleftarrow d_1+1;$</li>
+</ul>
+<p>不难发现我们的目标是使得差分数组$d_1,…,d_n$全部为$0$。<br>那么我们显然可以发现我们可以通过若干次操作1来使一些小于0的$d_i$平衡掉,再用操作2让剩下大于0的$d_i$消去，最后再用2和3将0消去。<br>本题的突破口: 要将本题所讲的+1&#x2F;-1操作转换为差分数组就可以将本题解出</p>
+<p>代码:</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
-
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">1005</span><span class="token punctuation">;</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">node</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">double</span> l<span class="token punctuation">,</span>r<span class="token punctuation">;</span>
-    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword">const</span> node <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token keyword">const</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> r<span class="token operator">&lt;</span>a<span class="token punctuation">.</span>r<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>seg<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
+<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">2e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+ll d<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">,</span>d<span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>n<span class="token operator">>></span>d<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">int</span> t<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>t<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token punctuation">;</span>
-        y<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">></span>d<span class="token punctuation">)</span>
+        <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
         <span class="token punctuation">&#123;</span>
-            cout<span class="token operator">&lt;&lt;</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>       <span class="token comment">//处理差分数组</span>
         <span class="token punctuation">&#125;</span>
-        <span class="token keyword">double</span> len<span class="token operator">=</span><span class="token function">sqrt</span><span class="token punctuation">(</span>d<span class="token operator">*</span>d<span class="token operator">-</span>y<span class="token operator">*</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span>x<span class="token operator">-</span>len<span class="token punctuation">,</span>x<span class="token operator">+</span>len<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>seg<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>seg<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">double</span> last<span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1e20</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>last<span class="token operator">&lt;</span>seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>l<span class="token punctuation">)</span>
+        ll sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        ll res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
         <span class="token punctuation">&#123;</span>
-            cnt<span class="token operator">++</span><span class="token punctuation">;</span>
-            last<span class="token operator">=</span>seg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>r<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>res<span class="token operator">+=</span><span class="token operator">-</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment">//小于0就用+1-1抵消</span>
+            <span class="token keyword">else</span> sum<span class="token operator">+=</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>         <span class="token comment">//否则直接-1</span>
         <span class="token punctuation">&#125;</span>
+        sum<span class="token operator">=</span>sum<span class="token operator">+</span>res<span class="token operator">+</span><span class="token function">abs</span><span class="token punctuation">(</span>res<span class="token operator">-</span>d<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//除去上面两种操作外还需要处理d[1]的情况</span>
+        cout<span class="token operator">&lt;&lt;</span>sum<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-    cout<span class="token operator">&lt;&lt;</span>cnt<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ol>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -527,7 +517,7 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/16/tanxin1/">http://example.com/2022/06/16/tanxin1/</a>
+                    <a href="http://example.com/2022/07/04/cf1700c/">http://example.com/2022/07/04/cf1700c/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +555,16 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                                    <span class="chip bg-color">贪心</span>
+                                <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                    <span class="chip bg-color">思维</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%B7%AE%E5%88%86/">
+                                    <span class="chip bg-color">差分</span>
+                                </a>
+                            
+                                <a href="/tags/codeforces/">
+                                    <span class="chip bg-color">codeforces</span>
                                 </a>
                             
                         </div>
@@ -744,33 +742,29 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/19/greedy1/">
+                <a href="/2022/07/04/chuansongmen/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="《算法竞赛进阶指南》树上染色">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="各文章传送门">
                         
-                        <span class="card-title">《算法竞赛进阶指南》树上染色</span>
+                        <span class="card-title">各文章传送门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            文章汇总
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CaoXin
                             
                         </span>
                     </div>
@@ -778,12 +772,8 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%91/">
-                        <span class="chip bg-color">树</span>
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
                     </a>
                     
                 </div>
@@ -797,13 +787,13 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/15/rmq/">
+                <a href="/2022/07/04/cf/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="ST算法">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="codeforces刷题汇总">
                         
-                        <span class="card-title">ST算法</span>
+                        <span class="card-title">codeforces刷题汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,16 +804,12 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CaoXin
                             
                         </span>
                     </div>
@@ -831,16 +817,8 @@ $a &amp;#x3D; x -\sqrt{d^2-y^2}">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RMQ%E9%97%AE%E9%A2%98/">
-                        <span class="chip bg-color">RMQ问题</span>
-                    </a>
-                    
-                    <a href="/tags/ST%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">ST算法</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%80%8D%E5%A2%9E/">
-                        <span class="chip bg-color">倍增</span>
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
                     </a>
                     
                 </div>

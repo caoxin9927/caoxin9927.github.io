@@ -4,9 +4,76 @@
   
     
     <entry>
-      <title>章节传送门</title>
-      <link href="/2022/07/03/chuansongmeng/"/>
-      <url>/2022/07/03/chuansongmeng/</url>
+      <title>各文章传送门</title>
+      <link href="/2022/07/04/chuansongmen/"/>
+      <url>/2022/07/04/chuansongmen/</url>
+      
+        <content type="html"><![CDATA[<h2 id="《算法竞赛进阶指南》刷题计划"><a href="#《算法竞赛进阶指南》刷题计划" class="headerlink" title="《算法竞赛进阶指南》刷题计划"></a>《算法竞赛进阶指南》刷题计划</h2><h2 id="codeforces刷题计划"><a href="#codeforces刷题计划" class="headerlink" title="codeforces刷题计划"></a>codeforces刷题计划</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Codeforces Round 802 (Div. 2)C题解</title>
+      <link href="/2022/07/04/cf1700c/"/>
+      <url>/2022/07/04/cf1700c/</url>
+      
+        <content type="html"><![CDATA[<p>原题链接:<a href="https://codeforces.com/contest/1700/problem/C">C. Helping the Nature</a><br><img src="https://s3.bmp.ovh/imgs/2022/07/04/12f2f703fd685d4a.jpg"><br>先做一段翻译:<br>小雷恩住在森林里。他最近注意到，在他喜欢的路径附近一些树都枯萎了，而其他树木水分过多，所以他决定学习如何控制土壤中水分的平衡来拯救树木。<br>有$n$棵树长在路径的旁边，当前每棵树的水分等级表示为数组$a_1,a_2,…,a_n$。雷恩学会了三种能力，可以帮助他浇灌土壤。  </p><ul><li>选择一个位置$i$然后让第$1,2,…,i$棵树的水分等级都减1.。 </li><li>选择一个位置$i$然后让第$i,i+1,…,n$课树的水分等级减1。</li><li>使所有树的水分等级都加上1。</li></ul><p>雷恩想知道他需要执行的最小行动数，以使每棵的水分都等于0。</p><h2 id="新单词"><a href="#新单词" class="headerlink" title="新单词"></a>新单词</h2><p>1.withering adj.使干枯的；使畏缩的；极有毁灭性的；极有讽刺性的 n.枯萎，凋谢 使凋谢；干枯；减弱；摧毁（wither 的现在分词） CET6<br>2.over hydrated 水分过多的<br>3.moisture n.潮气，水分 CET4</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于这种总体+&#x2F;-的操作，第一时间考虑差分数组，然后三种操作可以转化为:  </p><ul><li>$d_1\longleftarrow d_1+1　,　d_{i+1}\longleftarrow d_{i+1}+1;$</li><li>$d_i\longleftarrow d_i-1;$</li><li>$d_1\longleftarrow d_1+1;$</li></ul><p>不难发现我们的目标是使得差分数组$d_1,…,d_n$全部为$0$。<br>那么我们显然可以发现我们可以通过若干次操作1来使一些小于0的$d_i$平衡掉,再用操作2让剩下大于0的$d_i$消去，最后再用2和3将0消去。<br>本题的突破口: 要将本题所讲的+1&#x2F;-1操作转换为差分数组就可以将本题解出</p><p>代码:</p><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">2e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span><span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span><span class="token keyword">int</span> a<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>ll d<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token keyword">int</span> t<span class="token punctuation">;</span>    cin<span class="token operator">>></span>t<span class="token punctuation">;</span>    <span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span>    <span class="token punctuation">&#123;</span>        <span class="token keyword">int</span> n<span class="token punctuation">;</span>        cin<span class="token operator">>></span>n<span class="token punctuation">;</span>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>        <span class="token punctuation">&#123;</span>            cin<span class="token operator">>></span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>            d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>       <span class="token comment">//处理差分数组</span>        <span class="token punctuation">&#125;</span>        ll sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>        ll res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>        <span class="token punctuation">&#123;</span>            <span class="token keyword">if</span><span class="token punctuation">(</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>res<span class="token operator">+=</span><span class="token operator">-</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment">//小于0就用+1-1抵消</span>            <span class="token keyword">else</span> sum<span class="token operator">+=</span>d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>         <span class="token comment">//否则直接-1</span>        <span class="token punctuation">&#125;</span>        sum<span class="token operator">=</span>sum<span class="token operator">+</span>res<span class="token operator">+</span><span class="token function">abs</span><span class="token punctuation">(</span>res<span class="token operator">-</span>d<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//除去上面两种操作外还需要处理d[1]的情况</span>        cout<span class="token operator">&lt;&lt;</span>sum<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 思维 </tag>
+            
+            <tag> 差分 </tag>
+            
+            <tag> codeforces </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>codeforces刷题汇总</title>
+      <link href="/2022/07/04/cf/"/>
+      <url>/2022/07/04/cf/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《算法竞赛进阶指南》刷题汇总</title>
+      <link href="/2022/07/03/chuansongmenglanshu/"/>
+      <url>/2022/07/03/chuansongmenglanshu/</url>
       
         <content type="html"><![CDATA[<h2 id="《算法竞赛进阶指南》刷题计划"><a href="#《算法竞赛进阶指南》刷题计划" class="headerlink" title="《算法竞赛进阶指南》刷题计划"></a>《算法竞赛进阶指南》刷题计划</h2><hr><h3 id="基础算法"><a href="#基础算法" class="headerlink" title="基础算法"></a>基础算法</h3><h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><h4 id="递推与递归"><a href="#递推与递归" class="headerlink" title="递推与递归"></a>递推与递归</h4><h4 id="前缀和与差分"><a href="#前缀和与差分" class="headerlink" title="前缀和与差分"></a>前缀和与差分</h4><h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><p><a href="https://caoxin9927.github.io/2022/06/21/binary-search1/">赶牛入圈</a></p><h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><p><a href="https://caoxin9927.github.io/2022/06/21/zws/">中位数与环形均分纸牌问题</a><br><a href="https://caoxin9927.github.io/2022/06/13/algorithm2/">逆序对</a><br><a href="https://caoxin9927.github.io/2022/06/12/algorithm1/">动态中位数</a></p><h4 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h4><p><a href="https://caoxin9927.github.io/2022/06/16/tanxin1/">ST算法</a></p><h4 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h4><p><a href="https://caoxin9927.github.io/2022/06/19/greedy1/">树上染色</a><br><a href="https://caoxin9927.github.io/2022/06/16/tanxin1/">雷达设备</a>  </p><h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p><a href="https://caoxin9927.github.io/2022/07/03/stack1/">表达式计算</a></p><h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p><a href="https://caoxin9927.github.io/2022/07/03/queue2/">双端队列</a><br><a href="https://caoxin9927.github.io/2022/07/02/dandiaoqueue/">单调队列与单调栈</a></p><h4 id="链表与邻接表"><a href="#链表与邻接表" class="headerlink" title="链表与邻接表"></a>链表与邻接表</h4><h4 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h4><h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><h4 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h4><h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4>]]></content>
       
