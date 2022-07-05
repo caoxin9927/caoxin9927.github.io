@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="《算法竞赛进阶指南》 赶牛入圈, codenovice">
-    <meta name="description" content="原题链接:赶牛入圈
-离散化+二维数组前缀和+二分答案　　首先题目坐标的范围是1到10000，如果直接存在数组里遍历的话是不太现实的，再看题目描述，点只有最多500个，所以我们可以先进行一个离散化处理，将1到10000里面的点都存放在500的">
+    <meta name="keywords" content="cf1697c, codenovice">
+    <meta name="description" content="原题链接:C. awoo’s Favorite Problem先做一段翻译:
+给你两个长度为$n$的字符串$s$和$t$，每个字符串的字符都是&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;或者&amp;#39;c&amp;#39;。在一次移动中，你可以执行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
 
     
 
-    <title>《算法竞赛进阶指南》 赶牛入圈 | codenovice</title>
+    <title>cf1697c | codenovice</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">《算法竞赛进阶指南》 赶牛入圈</h1>
+                    <h1 class="description center-align post-title">cf1697c</h1>
                 </div>
             </div>
         </div>
@@ -368,12 +368,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/">
-                                <span class="chip bg-color">二分答案</span>
+                            <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                <span class="chip bg-color">思维</span>
                             </a>
                         
-                            <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
-                                <span class="chip bg-color">离散化</span>
+                            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                                <span class="chip bg-color">字符串</span>
                             </a>
                         
                     </div>
@@ -397,28 +397,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-21
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-21
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    959
+                    543
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
 
@@ -441,90 +441,68 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>原题链接:<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/123/">赶牛入圈</a></p>
-<p><strong>离散化+二维数组前缀和+二分答案</strong><br>　　首先题目坐标的范围是1到10000，如果直接存在数组里遍历的话是不太现实的，再看题目描述，点只有最多500个，所以我们可以先进行一个离散化处理，将1到10000里面的点都存放在500的点里，这样我们再进行前缀和操作。<br>　　之后我们再怎么确定畜栏边长呢？我们发现当边长在某个长度时能包含至少$C$个单位的草，如果将边长减少将不满足，所以满足<strong>二分答案</strong>的条件。所以我们以边长进行二分。接下来我们该如何确定边长框住的区域范围内有多少个单位的草？ 显然我们直接遍历离散后的二维前缀和数组是不行的，因为相邻两个点之间的长度有可能很大，所以我们采取用点来确定框住的区域范围，首先我们先枚举从第一个点开始枚举两个横坐标的范围，横坐标的范围确定后，我们再枚举纵坐标的范围。范围确定之后，我们再根据4个点的坐标直接算出对应区间有多少个单位的草。<br>　　最后注意，因为草都在右下角的点上，而我们要选择这个草的话要把这整个区域的草都选中，所以我们在计算区间前缀和时注意要往前算一个点，具体看代码。<br>　　时间复杂度:枚举范围点时，我们采用<strong>双指针</strong>的形式枚举x点和y点，而二分答案时间复杂度为多为10，所以我们时间复杂度近似$O(N^2)$</p>
-<p>代码:</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+                <p>原题链接:<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1697/problem/C">C. awoo’s Favorite Problem</a><br><img src="https://s3.bmp.ovh/imgs/2022/07/04/35c7e6ad354003c1.jpg"><br>先做一段翻译:</p>
+<p>给你两个长度为$n$的字符串$s$和$t$，每个字符串的字符都是<code>&#39;a&#39;,&#39;b&#39;或者&#39;c&#39;</code>。<br>在一次移动中，你可以执行下列动作之一:   </p>
+<ul>
+<li>选择一个s中出现的<code>&#39;ab&#39;</code>用<code>&#39;ba&#39;</code>替换;  </li>
+<li>选择一个s中出现的<code>&#39;bc&#39;</code>用<code>&#39;cb&#39;</code>替换;<br>你可以执行任意数量的移动(可能为0)。你能改变字符串s以使其等于字符串t吗?</li>
+</ul>
+<h2 id="新单词"><a href="#新单词" class="headerlink" title="新单词"></a>新单词</h2><p>1.occurrence n.发生的事，事件；发生，出现（尤指意外且令人不快的事）CET4<br>2.arbitrary adj.任意的，随心所欲的；专横的，武断的  </p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先我们看这两个操作只能改变a和c相对于b的位置,而a和c的相对位置是不变的。第二点，a只能向后移动，c只能向前移动，所以a在s中的位置相对于t数组中来说是靠前的，而c是靠后的。所以本题的思路是:先删去所有的b看删去后两个数组是否相同，不同就说明不能通过上面两种操作变成t数组，其次看变换后a和c相对于变换前的位置，如果上面两种条件都符合，就说明可以通过上面两个操作变换。<br>代码:&#96;&#96;&#96;<br>#include <iostream></p>
+<p>using namespace std;</p>
+<p>const int N &#x3D; 1e5+10;<br>int cnt1[N];<br>int cnt2[N];</p>
+<p>int main()<br>{</p>
+<pre><code>int t;
+cin&gt;&gt;t;
+while(t--)
+&#123;
+    int n;
+    string a;
+    string b;
+    string cmp1,cmp2;
 
-
-
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">x</span> <span class="token expression">first</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">y</span> <span class="token expression">second</span></span>
-
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">10005</span><span class="token punctuation">;</span>
-<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> PII<span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> s<span class="token punctuation">[</span><span class="token number">1010</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1010</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> numbers<span class="token punctuation">;</span>
-
-PII points<span class="token punctuation">[</span><span class="token number">1005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> c<span class="token punctuation">,</span>n<span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> r <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>l <span class="token operator">&lt;</span> r<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> mid <span class="token operator">=</span> l <span class="token operator">+</span> r <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">>=</span> x<span class="token punctuation">)</span> r <span class="token operator">=</span> mid<span class="token punctuation">;</span>
-        <span class="token keyword">else</span> l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> r<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-
-<span class="token keyword">bool</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span> 
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x1<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>x2<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>x2<span class="token operator">&lt;</span>numbers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>x2<span class="token operator">++</span><span class="token punctuation">)</span>           <span class="token comment">//因为我们直接枚举边长的话时间复杂度会很大，所以我们考虑确定点的形式</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token operator">-</span>numbers<span class="token punctuation">[</span>x1<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">></span>len<span class="token punctuation">)</span>x1<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//这里为什么要+1？因为每个草都是在右下角，所以x1的位置还有1个单位的长度没有计算所以我们要+1.</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> y1<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>y2<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>y2<span class="token operator">&lt;</span>numbers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>y2<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#123;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>y2<span class="token punctuation">]</span><span class="token operator">-</span>numbers<span class="token punctuation">[</span>y1<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">></span>len<span class="token punctuation">)</span>y1<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token punctuation">[</span>y2<span class="token punctuation">]</span> <span class="token operator">-</span> s<span class="token punctuation">[</span>x1 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>y2<span class="token punctuation">]</span> <span class="token operator">-</span> s<span class="token punctuation">[</span>x2<span class="token punctuation">]</span><span class="token punctuation">[</span>y1 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> s<span class="token punctuation">[</span>x1 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>y1 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">>=</span> c<span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span><span class="token comment">//同理，如果我们选择上边和左边单位的草，是要把整个区间都选中才行，所以我们要减去1.</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-     <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    cin<span class="token operator">>></span>c<span class="token operator">>></span>n<span class="token punctuation">;</span>
-    numbers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//这里为什么要先读入一个0？ 因为我们在计算二维前缀和时下标都要从1开始，所以为了方便我们先读入一个0</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>x<span class="token operator">>></span>y<span class="token punctuation">;</span>
-        points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span>x<span class="token punctuation">,</span>y<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        numbers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>numbers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>numbers<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>numbers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    numbers<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span>numbers<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>numbers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>numbers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//离散化</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> x<span class="token operator">=</span><span class="token function">get</span><span class="token punctuation">(</span>points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token function">get</span><span class="token punctuation">(</span>points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//get数组用来找离散化后的点的对应位置</span>
-        s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//离散化后当前点的位置的草+1</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>numbers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>numbers<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>s<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>s<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//处理前缀和</span>
-    
-    <span class="token keyword">int</span> l<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span>                              <span class="token comment">//二分答案找边长</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> mid<span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">check</span><span class="token punctuation">(</span>mid<span class="token punctuation">)</span><span class="token punctuation">)</span>r<span class="token operator">=</span>mid<span class="token punctuation">;</span>
-        <span class="token keyword">else</span> l<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    cout<span class="token operator">&lt;&lt;</span>r<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;
+    int k1=0,k2=0;
+    for(int i=0;i&lt;n;i++)
+    &#123;
+        if(a[i]!=&#39;b&#39;)
+        &#123;
+            cmp1+=a[i];
+            cnt1[k1++]=i;
+        &#125;
+        if(b[i]!=&#39;b&#39;)
+        &#123;
+            cmp2+=b[i];
+            cnt2[k2++]=i;
+        &#125;
+    &#125;
+    bool flag = false;
+    if(cmp1==cmp2)
+    &#123;
+        for(int i=0;i&lt;k1;i++)
+        &#123;
+            if(a[cnt1[i]]==&#39;c&#39;&amp;&amp;cnt1[i]&lt;cnt2[i])
+            &#123;
+                flag=true;
+                break;
+            &#125;
+            if(a[cnt1[i]]==&#39;a&#39;&amp;&amp;cnt1[i]&gt;cnt2[i])
+            &#123;
+                flag=true;
+                break;
+            &#125;
+            //cout&lt;&lt;11&lt;&lt;endl;
+        &#125;
+        if(!flag)cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+    &#125;
+    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+&#125;
+return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+</code></pre>
 
                 
             </div>
@@ -551,7 +529,7 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/21/binary-search1/">http://example.com/2022/06/21/binary-search1/</a>
+                    <a href="http://example.com/2022/07/04/cf1697c/">http://example.com/2022/07/04/cf1697c/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,12 +567,12 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/">
-                                    <span class="chip bg-color">二分答案</span>
+                                <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                    <span class="chip bg-color">思维</span>
                                 </a>
                             
-                                <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
-                                    <span class="chip bg-color">离散化</span>
+                                <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                                    <span class="chip bg-color">字符串</span>
                                 </a>
                             
                         </div>
@@ -772,13 +750,13 @@ PII points<span class="token punctuation">[</span><span class="token number">100
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/21/zws/">
+                <a href="/2022/07/05/neicun/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="《算法竞赛进阶指南》中位数与环形均分纸牌">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="内存分配">
                         
-                        <span class="card-title">《算法竞赛进阶指南》中位数与环形均分纸牌</span>
+                        <span class="card-title">内存分配</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -789,14 +767,14 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-05
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    基础数据结构
                                 </a>
                             
                             
@@ -806,12 +784,16 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-                        <span class="chip bg-color">中位数</span>
+                    <a href="/tags/%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">队列</span>
                     </a>
                     
-                    <a href="/tags/%E7%8E%AF%E5%BD%A2%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C/">
-                        <span class="chip bg-color">环形均分纸牌</span>
+                    <a href="/tags/set/">
+                        <span class="chip bg-color">set</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E6%8B%9F/">
+                        <span class="chip bg-color">模拟</span>
                     </a>
                     
                 </div>
@@ -825,33 +807,29 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/19/greedy1/">
+                <a href="/2022/07/04/chuansongmen/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="《算法竞赛进阶指南》树上染色">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="各文章传送门">
                         
-                        <span class="card-title">《算法竞赛进阶指南》树上染色</span>
+                        <span class="card-title">各文章传送门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            文章汇总
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-category">
-                                    基础算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CaoXin
                             
                         </span>
                     </div>
@@ -859,12 +837,8 @@ PII points<span class="token punctuation">[</span><span class="token number">100
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%91/">
-                        <span class="chip bg-color">树</span>
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
                     </a>
                     
                 </div>
@@ -1025,13 +999,6 @@ PII points<span class="token punctuation">[</span><span class="token number">100
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
