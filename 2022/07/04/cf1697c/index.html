@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cf1697c, codenovice">
+    <meta name="keywords" content="Educational Codeforces Round 130 (Rated for Div. 2) C题解, codenovice">
     <meta name="description" content="原题链接:C. awoo’s Favorite Problem先做一段翻译:
 给你两个长度为$n$的字符串$s$和$t$，每个字符串的字符都是&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;或者&amp;#39;c&amp;#39;。在一次移动中，你可以执行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
 
     
 
-    <title>cf1697c | codenovice</title>
+    <title>Educational Codeforces Round 130 (Rated for Div. 2) C题解 | codenovice</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cf1697c</h1>
+                    <h1 class="description center-align post-title">Educational Codeforces Round 130 (Rated for Div. 2) C题解</h1>
                 </div>
             </div>
         </div>
@@ -404,14 +404,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-04
+                    2022-07-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    543
+                    520
                 </div>
                 
 
@@ -448,61 +448,66 @@
 <li>选择一个s中出现的<code>&#39;bc&#39;</code>用<code>&#39;cb&#39;</code>替换;<br>你可以执行任意数量的移动(可能为0)。你能改变字符串s以使其等于字符串t吗?</li>
 </ul>
 <h2 id="新单词"><a href="#新单词" class="headerlink" title="新单词"></a>新单词</h2><p>1.occurrence n.发生的事，事件；发生，出现（尤指意外且令人不快的事）CET4<br>2.arbitrary adj.任意的，随心所欲的；专横的，武断的  </p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先我们看这两个操作只能改变a和c相对于b的位置,而a和c的相对位置是不变的。第二点，a只能向后移动，c只能向前移动，所以a在s中的位置相对于t数组中来说是靠前的，而c是靠后的。所以本题的思路是:先删去所有的b看删去后两个数组是否相同，不同就说明不能通过上面两种操作变成t数组，其次看变换后a和c相对于变换前的位置，如果上面两种条件都符合，就说明可以通过上面两个操作变换。<br>代码:&#96;&#96;&#96;<br>#include <iostream></p>
-<p>using namespace std;</p>
-<p>const int N &#x3D; 1e5+10;<br>int cnt1[N];<br>int cnt2[N];</p>
-<p>int main()<br>{</p>
-<pre><code>int t;
-cin&gt;&gt;t;
-while(t--)
-&#123;
-    int n;
-    string a;
-    string b;
-    string cmp1,cmp2;
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先我们看这两个操作只能改变a和c相对于b的位置,而a和c的相对位置是不变的。第二点，a只能向后移动，c只能向前移动，所以a在s中的位置相对于t数组中来说是靠前的，而c是靠后的。所以本题的思路是:先删去所有的b看删去后两个数组是否相同，不同就说明不能通过上面两种操作变成t数组，其次看变换后a和c相对于变换前的位置，如果上面两种条件都符合，就说明可以通过上面两个操作变换。<br>代码:</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
-    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;
-    int k1=0,k2=0;
-    for(int i=0;i&lt;n;i++)
-    &#123;
-        if(a[i]!=&#39;b&#39;)
-        &#123;
-            cmp1+=a[i];
-            cnt1[k1++]=i;
-        &#125;
-        if(b[i]!=&#39;b&#39;)
-        &#123;
-            cmp2+=b[i];
-            cnt2[k2++]=i;
-        &#125;
-    &#125;
-    bool flag = false;
-    if(cmp1==cmp2)
-    &#123;
-        for(int i=0;i&lt;k1;i++)
-        &#123;
-            if(a[cnt1[i]]==&#39;c&#39;&amp;&amp;cnt1[i]&lt;cnt2[i])
-            &#123;
-                flag=true;
-                break;
-            &#125;
-            if(a[cnt1[i]]==&#39;a&#39;&amp;&amp;cnt1[i]&gt;cnt2[i])
-            &#123;
-                flag=true;
-                break;
-            &#125;
-            //cout&lt;&lt;11&lt;&lt;endl;
-        &#125;
-        if(!flag)cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-    &#125;
-    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-&#125;
-return 0;
-</code></pre>
-<p>}</p>
-<pre><code>
-</code></pre>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">1e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> cnt1<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> cnt2<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+
+	<span class="token keyword">int</span> t<span class="token punctuation">;</span>
+	cin<span class="token operator">>></span>t<span class="token punctuation">;</span>
+	<span class="token keyword">while</span><span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+		string a<span class="token punctuation">;</span>
+		string b<span class="token punctuation">;</span>
+		string cmp1<span class="token punctuation">,</span>cmp2<span class="token punctuation">;</span>
+
+		cin<span class="token operator">>></span>n<span class="token operator">>></span>a<span class="token operator">>></span>b<span class="token punctuation">;</span>
+		<span class="token keyword">int</span> k1<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>k2<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token char">'b'</span><span class="token punctuation">)</span>
+			<span class="token punctuation">&#123;</span>
+				cmp1<span class="token operator">+=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+				cnt1<span class="token punctuation">[</span>k1<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token char">'b'</span><span class="token punctuation">)</span>
+			<span class="token punctuation">&#123;</span>
+				cmp2<span class="token operator">+=</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+				cnt2<span class="token punctuation">[</span>k2<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">bool</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>cmp1<span class="token operator">==</span>cmp2<span class="token punctuation">)</span>
+		<span class="token punctuation">&#123;</span>
+			<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>k1<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+			<span class="token punctuation">&#123;</span>
+				<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>cnt1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'c'</span><span class="token operator">&amp;&amp;</span>cnt1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>cnt2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+				<span class="token punctuation">&#123;</span>
+					flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+					<span class="token keyword">break</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>cnt1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'a'</span><span class="token operator">&amp;&amp;</span>cnt1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">></span>cnt2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+				<span class="token punctuation">&#123;</span>
+					flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+					<span class="token keyword">break</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token comment">//cout&lt;&lt;11&lt;&lt;endl;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>flag<span class="token punctuation">)</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"Yes"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+			<span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"No"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"No"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
