@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>货币系统【完全背包求解最大无关向量组个数】</title>
+      <link href="/2022/07/10/dp6/"/>
+      <url>/2022/07/10/dp6/</url>
+      
+        <content type="html"><![CDATA[<p>原题链接:<a href="https://www.acwing.com/problem/content/534/">货币系统</a>  </p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义一个货币系统$n,a$：一共有$n$种货币，每种货币对应面值为$a_i$<br>每种货币可以使用任意多个，进行线性组合:<br>$$k&#x3D;x_1a_1+x_2a_2+…+x_na_n,其中x_i\in Z_0　i&#x3D;1,2,…$$<br>$k$为该货币系统$(n,a)$能够<strong>线性表出</strong>的数值<br>注:本题的<strong>线性表出</strong>对于<strong>系数</strong>的要求和<strong>线性标出</strong>是不一样的，本题的系数必须是<strong>非负整数</strong>。<br>定义:<br>$(n,a)和(m,b)等价\Leftrightarrow　\forall k\in Z^+\begin{cases}k如果能被a线性表出，则k也能被b线性表出\\k如果不能被a线性表出，则k也不能被b线性表出\end{cases}$  </p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>$n$种货币，每种货币可以使用<strong>无穷多个</strong><br>通过这些信息，我们可以初步识别该题目是一个<strong>完全背包</strong>的变种题目<br>接着我们需要挖掘一下题目里的<strong>性质</strong>：  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 动态规划 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 完全背包 </tag>
+            
+            <tag> 线性代数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一篇博客学会使用树状数组</title>
       <link href="/2022/07/09/treearray/"/>
       <url>/2022/07/09/treearray/</url>

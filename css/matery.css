@@ -241,7 +241,8 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right,#0081ff 0,#1cbbb4 100%);
+    opacity: 0.75;
 }
 
 .text-color {
@@ -257,7 +258,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, #0081ff 0,#1cbbb4 100%);
     opacity: 0.8;
 }
 
@@ -556,7 +557,7 @@ header .go-back i {
 }
 
 .bg-cover:before,
-.bg-cover:after {
+/*.bg-cover:after {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -565,7 +566,7 @@ header .go-back i {
     left: 0;
     top: 0;
     content: "";
-}
+}*/
 
 .bg-cover .container {
     position: relative;
@@ -1317,7 +1318,7 @@ thead {
 
 .chip-container .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+    background: linear-gradient(to right, #0081ff 0,#1cbbb4 100%) !important;
 }
 
 .chip .tag-length {
@@ -1806,8 +1807,8 @@ thead {
 
 .other-skills .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-    border: 1px solid #4cbf30;
+    background: linear-gradient(to right, #0081ff 0,#1cbbb4 100%);
+    border: 1px solid #0081ff;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .25)
 }
 
